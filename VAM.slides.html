@@ -1985,14 +1985,17 @@ In&nbsp;[19]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="source-code-the-interpreter-python-distributions-and-ides">Source code, the interpreter, Python distributions, and IDEs</h2>
+<h2 id="installing-python">Installing Python</h2>
 <p>First, you need to install Python.  There are lots of tutorials on this:</p>
 <ul>
 <li>OSX users: <a href="http://docs.python-guide.org/en/latest/starting/install/osx/"><a href="http://docs.python-guide.org/en/latest/starting/install/osx/">http://docs.python-guide.org/en/latest/starting/install/osx/</a></a></li>
 <li>Windows users: <a href="http://docs.python-guide.org/en/latest/starting/install/win/"><a href="http://docs.python-guide.org/en/latest/starting/install/win/">http://docs.python-guide.org/en/latest/starting/install/win/</a></a></li>
 <li>Linux users: <a href="http://docs.python-guide.org/en/latest/starting/install/linux/"><a href="http://docs.python-guide.org/en/latest/starting/install/linux/">http://docs.python-guide.org/en/latest/starting/install/linux/</a></a></li>
 </ul>
-<p>Follow one of these guides.  My opinionated perspective: OSX and Windows are not great (OSX is a little easier if you have <code>brew</code> or <code>MacPorts</code> installed, but it&#39;s still not ideal).</p>
+<p>Follow one of these guides. </p>
+<blockquote>
+<p>Writing Python on OSX and Windows is not ideal (OSX is a little easier if you have <code>brew</code> or <code>MacPorts</code> installed, but it&#39;s still not great).  If you want to get serious about your development, consider running a Virtual Machine (VMWare or VirtualBox).</p>
+</blockquote>
 </div>
 </div>
 </div></section><section>
@@ -2033,7 +2036,7 @@ In&nbsp;[19]:
 # Added by Canopy installer on 2013-05-09
 source /Users/rweiss/Library/Enthought/Canopy_64bit/User/bin/activate
 </code></pre><blockquote>
-<p>NOTE: A <code>.profile</code> file is automatically executed every time you open a shell.  In other systems, this can also be a <code>~/.bashrc</code>, a <code>~/.bash_profile</code>, <code>~/.zshrc</code>, and others; it depends on what kind of shell you&#39;re running.</p>
+<p>NOTE: For most Unix-based shells, a <code>.profile</code> file (or something similar) is automatically executed (<code>source</code>) every time you open a shell.  In other systems, this can also be a <code>~/.bashrc</code>, a <code>~/.bash_profile</code>, <code>~/.zshrc</code>, and others; it depends on what kind of shell you&#39;re running.</p>
 </blockquote>
 <p>If you want to check what <code>python</code> you&#39;re running, type <code>which python</code>.  This will tell you where your computer is sending calls to <code>python</code>.  (You can do this for any executable added to your path, such as <code>java</code> if it is installed).</p>
 <pre><code>rweiss$ which python
@@ -2053,13 +2056,15 @@ source /Users/rweiss/Library/Enthought/Canopy_64bit/User/bin/activate
 rweiss$ which python
 /usr/bin/python
 rweiss$ source /Users/rweiss/Library/Enthought/Canopy_64bit/User/bin/activate # or just source ~/.profile
-rweiss$ which python
+(Canopy 64bit) rweiss$ which python
 /Users/rweiss/Library/Enthought/Canopy_64bit/User/bin/python
 </code></pre><p><code>deactivate</code> is actually a <code>virtualenv</code> command.  We&#39;ll get back to that in a few slides.</p>
 <p>Installing the EPD means you won&#39;t have to manually handle all the dependencies for many popular 3rd party modules, like <code>scipy</code> and <code>lxml</code>.  You don&#39;t have to use it, but if you aren&#39;t comfortable installing software from the command line, handling paths, or compiling dependencies from source code, just use EPD.</p>
 </div>
 </div>
-</div></section><section>
+</div></section>
+    </section><section>
+    <section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2073,9 +2078,7 @@ rweiss$ which python
 <p>If you are not comfortable with the command line and you want a single piece of software where you write all your code and the interpreter in the same environment (think RStudio), you should consider using Canopy for now.</p>
 </div>
 </div>
-</div></section>
-    </section><section>
-    <section>
+</div></section><section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2096,31 +2099,516 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div></section><section>
     
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong> Don&#39;t use <code>python</code>.  Use <code>IPython</code>. </strong> </p>
+<pre><code>rweiss$ ipython
+Python 2.7.3 | 64-bit | (default, Jun 14 2013, 18:17:36) 
+Type &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+
+IPython 2.0.0 -- An enhanced Interactive Python.
+?         -&gt; Introduction and overview of IPython&#39;s features.
+%quickref -&gt; Quick reference.
+help      -&gt; Python&#39;s own help system.
+object?   -&gt; Details about &#39;object&#39;, use &#39;object??&#39; for extra details.
+
+In [1]:
+</code></pre>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="package-management">Package management</h2>
+<h3 id="package-managers">Package managers</h3>
+<p><code>IPython</code> is a third-party library on top of vanilla Python.  Most third-party libraries are also called <em>modules</em> or <em>packages</em>.</p>
+<p>If you have enstalled EPD, you already have <code>IPython</code> plus a bunch of popular modules.  If not, you have to install the third-party libraries by hand on the command line.</p>
+<p>The most common solution is to use a package manager or install from source.</p>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you are using vanilla python, <code>pip</code> or <code>easy_install</code>.  Choosing between these two can be <a href="http://stackoverflow.com/questions/3220404/why-use-pip-over-easy-install">controversial</a>.  I prefer <code>pip</code>.</p>
+<blockquote>
+<p>Installation instructions:</p>
+<ol>
+<li><a href="http://pip.readthedocs.org/en/latest/installing.html"><code>pip</code></a></li>
+<li><a href="https://pypi.python.org/pypi/setuptools"><code>easy_install</code></a></li>
+</ol>
+</blockquote>
+<p>Both install the library from the central, universally accessible repository <code>PyPI</code>.  This is roughly how this process works:</p>
+<ol>
+<li>A developer writes a library, creates a distributable package (an <code>.egg</code>) and uploads to PyPI.</li>
+<li>You ask for the library via <code>pip</code> or <code>easy_install</code>, e.g.:<pre><code>rweiss$ pip install requests
+</code></pre></li>
+<li>The package manager handles installing the library; downloads the bundled file and extracts code to the right paths so that <code>python</code> can call it.  </li>
+<li>In your script or in the shell, <code>import requests</code> (or whatever you downloaded).</li>
+</ol>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you are using Enthought, it comes with its own package manager <a href="http://code.enthought.com/projects/enstaller/">Enstaller</a>.  You can install packages using either: </p>
+<ol>
+<li>the Canopy interface (though you will probably not need to, as most libraries for data are already installed).</li>
+<li>Enstaller from the command line (<code>enpkg</code>).</li>
+</ol>
+<p>Enthought maintains their own repository but they can also draw from <code>PyPI</code> as well.</p>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you are feeling adventurous, you can download the source from a third-party website directly (i.e. <code>python setup.py install</code>)</p>
+<blockquote>
+<p>Unless you understand your OS and feel comfortable with the command line, you will probably run into path and dependency problems.  You will need a better understanding of file permissions and the command line.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="package-dependencies">Package dependencies</h2>
+<p>How can I tell what I&#39;ve got installed?  What packages can Python import?</p>
+<p>What is a <code>requirements.txt</code> file?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="virtual-environments">Virtual environments</h2>
+<p>Last bit of working advice for working with Python.</p>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="some-syntax-tedium">Some Syntax tedium</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In Python, whitespace matters.</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[4]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="o">**</span> <span class="n">Don</span><span class="s">&#39;t use `python`.  Use `IPython`. ** </span>
-
-<span class="sb">``</span><span class="err">`</span>
-<span class="n">rweiss</span><span class="err">$</span> <span class="n">ipython</span>
-<span class="n">Python</span> <span class="mf">2.7</span><span class="o">.</span><span class="mi">3</span> <span class="o">|</span> <span class="mi">64</span><span class="o">-</span><span class="n">bit</span> <span class="o">|</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Jun</span> <span class="mi">14</span> <span class="mi">2013</span><span class="p">,</span> <span class="mi">18</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">36</span><span class="p">)</span> 
-<span class="n">Type</span> <span class="s">&quot;copyright&quot;</span><span class="p">,</span> <span class="s">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
-
-<span class="n">IPython</span> <span class="mf">2.0</span><span class="o">.</span><span class="mi">0</span> <span class="o">--</span> <span class="n">An</span> <span class="n">enhanced</span> <span class="n">Interactive</span> <span class="n">Python</span><span class="o">.</span>
-<span class="err">?</span>         <span class="o">-&gt;</span> <span class="n">Introduction</span> <span class="ow">and</span> <span class="n">overview</span> <span class="n">of</span> <span class="n">IPython</span><span class="s">&#39;s features.</span>
-<span class="o">%</span><span class="k">quickref</span> <span class="o">-&gt;</span> <span class="n">Quick</span> <span class="n">reference</span><span class="o">.</span>
-<span class="n">help</span>      <span class="o">-&gt;</span> <span class="n">Python</span><span class="s">&#39;s own help system.</span>
-<span class="nb">object</span><span class="err">?</span>   <span class="o">-&gt;</span> <span class="n">Details</span> <span class="n">about</span> <span class="s">&#39;object&#39;</span><span class="p">,</span> <span class="n">use</span> <span class="s">&#39;object??&#39;</span> <span class="k">for</span> <span class="n">extra</span> <span class="n">details</span><span class="o">.</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> 
-<span class="sb">``</span><span class="err">`</span>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="k">print</span> <span class="n">i</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_pyerr">
+<pre>
+<span class="ansicyan">  File </span><span class="ansigreen">&quot;&lt;ipython-input-4-83d360549157&gt;&quot;</span><span class="ansicyan">, line </span><span class="ansigreen">2</span>
+<span class="ansired">    print i</span>
+        ^
+<span class="ansired">IndentationError</span><span class="ansired">:</span> expected an indented block
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[5]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+0
+1
+2
+3
+4
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In Python, some names are reserved and you <strong>MUST NOT</strong> use them as variable names:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[47]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">keyword</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">keyword</span><span class="o">.</span><span class="n">iskeyword</span><span class="p">(</span><span class="s">&#39;str&#39;</span><span class="p">)</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[47]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+[&apos;and&apos;,
+ &apos;as&apos;,
+ &apos;assert&apos;,
+ &apos;break&apos;,
+ &apos;class&apos;,
+ &apos;continue&apos;,
+ &apos;def&apos;,
+ &apos;del&apos;,
+ &apos;elif&apos;,
+ &apos;else&apos;,
+ &apos;except&apos;,
+ &apos;exec&apos;,
+ &apos;finally&apos;,
+ &apos;for&apos;,
+ &apos;from&apos;,
+ &apos;global&apos;,
+ &apos;if&apos;,
+ &apos;import&apos;,
+ &apos;in&apos;,
+ &apos;is&apos;,
+ &apos;lambda&apos;,
+ &apos;not&apos;,
+ &apos;or&apos;,
+ &apos;pass&apos;,
+ &apos;print&apos;,
+ &apos;raise&apos;,
+ &apos;return&apos;,
+ &apos;try&apos;,
+ &apos;while&apos;,
+ &apos;with&apos;,
+ &apos;yield&apos;]
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[48]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">__builtin__</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">(</span><span class="n">__builtin__</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[48]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+[&apos;ArithmeticError&apos;,
+ &apos;AssertionError&apos;,
+ &apos;AttributeError&apos;,
+ &apos;BaseException&apos;,
+ &apos;BufferError&apos;,
+ &apos;BytesWarning&apos;,
+ &apos;DeprecationWarning&apos;,
+ &apos;EOFError&apos;,
+ &apos;Ellipsis&apos;,
+ &apos;EnvironmentError&apos;,
+ &apos;Exception&apos;,
+ &apos;False&apos;,
+ &apos;FloatingPointError&apos;,
+ &apos;FutureWarning&apos;,
+ &apos;GeneratorExit&apos;,
+ &apos;IOError&apos;,
+ &apos;ImportError&apos;,
+ &apos;ImportWarning&apos;,
+ &apos;IndentationError&apos;,
+ &apos;IndexError&apos;,
+ &apos;KeyError&apos;,
+ &apos;KeyboardInterrupt&apos;,
+ &apos;LookupError&apos;,
+ &apos;MemoryError&apos;,
+ &apos;NameError&apos;,
+ &apos;None&apos;,
+ &apos;NotImplemented&apos;,
+ &apos;NotImplementedError&apos;,
+ &apos;OSError&apos;,
+ &apos;OverflowError&apos;,
+ &apos;PendingDeprecationWarning&apos;,
+ &apos;ReferenceError&apos;,
+ &apos;RuntimeError&apos;,
+ &apos;RuntimeWarning&apos;,
+ &apos;StandardError&apos;,
+ &apos;StopIteration&apos;,
+ &apos;SyntaxError&apos;,
+ &apos;SyntaxWarning&apos;,
+ &apos;SystemError&apos;,
+ &apos;SystemExit&apos;,
+ &apos;TabError&apos;,
+ &apos;True&apos;,
+ &apos;TypeError&apos;,
+ &apos;UnboundLocalError&apos;,
+ &apos;UnicodeDecodeError&apos;,
+ &apos;UnicodeEncodeError&apos;,
+ &apos;UnicodeError&apos;,
+ &apos;UnicodeTranslateError&apos;,
+ &apos;UnicodeWarning&apos;,
+ &apos;UserWarning&apos;,
+ &apos;ValueError&apos;,
+ &apos;Warning&apos;,
+ &apos;ZeroDivisionError&apos;,
+ &apos;__IPYTHON__&apos;,
+ &apos;__IPYTHON__active&apos;,
+ &apos;__debug__&apos;,
+ &apos;__doc__&apos;,
+ &apos;__import__&apos;,
+ &apos;__name__&apos;,
+ &apos;__package__&apos;,
+ &apos;abs&apos;,
+ &apos;all&apos;,
+ &apos;any&apos;,
+ &apos;apply&apos;,
+ &apos;basestring&apos;,
+ &apos;bin&apos;,
+ &apos;bool&apos;,
+ &apos;buffer&apos;,
+ &apos;bytearray&apos;,
+ &apos;bytes&apos;,
+ &apos;callable&apos;,
+ &apos;chr&apos;,
+ &apos;classmethod&apos;,
+ &apos;cmp&apos;,
+ &apos;coerce&apos;,
+ &apos;compile&apos;,
+ &apos;complex&apos;,
+ &apos;copyright&apos;,
+ &apos;credits&apos;,
+ &apos;delattr&apos;,
+ &apos;dict&apos;,
+ &apos;dir&apos;,
+ &apos;divmod&apos;,
+ &apos;dreload&apos;,
+ &apos;enumerate&apos;,
+ &apos;eval&apos;,
+ &apos;execfile&apos;,
+ &apos;file&apos;,
+ &apos;filter&apos;,
+ &apos;float&apos;,
+ &apos;format&apos;,
+ &apos;frozenset&apos;,
+ &apos;get_ipython&apos;,
+ &apos;getattr&apos;,
+ &apos;globals&apos;,
+ &apos;hasattr&apos;,
+ &apos;hash&apos;,
+ &apos;help&apos;,
+ &apos;hex&apos;,
+ &apos;id&apos;,
+ &apos;input&apos;,
+ &apos;int&apos;,
+ &apos;intern&apos;,
+ &apos;isinstance&apos;,
+ &apos;issubclass&apos;,
+ &apos;iter&apos;,
+ &apos;len&apos;,
+ &apos;license&apos;,
+ &apos;list&apos;,
+ &apos;locals&apos;,
+ &apos;long&apos;,
+ &apos;map&apos;,
+ &apos;max&apos;,
+ &apos;memoryview&apos;,
+ &apos;min&apos;,
+ &apos;next&apos;,
+ &apos;object&apos;,
+ &apos;oct&apos;,
+ &apos;open&apos;,
+ &apos;ord&apos;,
+ &apos;pow&apos;,
+ &apos;print&apos;,
+ &apos;property&apos;,
+ &apos;range&apos;,
+ &apos;raw_input&apos;,
+ &apos;reduce&apos;,
+ &apos;reload&apos;,
+ &apos;repr&apos;,
+ &apos;reversed&apos;,
+ &apos;round&apos;,
+ &apos;set&apos;,
+ &apos;setattr&apos;,
+ &apos;slice&apos;,
+ &apos;sorted&apos;,
+ &apos;staticmethod&apos;,
+ &apos;str&apos;,
+ &apos;sum&apos;,
+ &apos;super&apos;,
+ &apos;tuple&apos;,
+ &apos;type&apos;,
+ &apos;unichr&apos;,
+ &apos;unicode&apos;,
+ &apos;vars&apos;,
+ &apos;xrange&apos;,
+ &apos;zip&apos;]
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can use these names as variable names, Python won&#39;t stop you...but you&#39;ll be sorry!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[50]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="nb">unicode</span> <span class="o">=</span> <span class="s">&#39;will this work?&#39;</span>
+<span class="k">print</span> <span class="nb">unicode</span>
+<span class="nb">unicode</span><span class="p">(</span><span class="s">&#39;will this work?&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+will this work?
+
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-50-df26d9d9e02d&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      1</span> unicode <span class="ansiblue">=</span> <span class="ansiblue">&apos;will this work?&apos;</span><span class="ansiblue"></span>
+<span class="ansigreen">      2</span> <span class="ansigreen">print</span> unicode<span class="ansiblue"></span>
+<span class="ansigreen">----&gt; 3</span><span class="ansired"> </span>unicode<span class="ansiblue">(</span><span class="ansiblue">&apos;will this work?&apos;</span><span class="ansiblue">)</span><span class="ansiblue"></span>
+
+<span class="ansired">TypeError</span>: &apos;str&apos; object is not callable</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -2133,35 +2621,30 @@ In&nbsp;[]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="package-management">Package management</h1>
-<p><code>IPython</code> is a third-party library to basic Python.  Most third-party libraries are <em>modules</em>.</p>
-<p>If you have enstalled EPD, you already have <code>IPython!</code> plus a bunch of popular modules.  If not, you have to install the third-party module yourself.</p>
-<p>The most common solution is to use one of three </p>
+<h1 id="data-types-and-collections-in-python">Data types and collections in Python</h1>
+<p>Now we&#39;ll review a couple of basic data types you can expect to use in Python.</p>
 </div>
 </div>
-</div></section>
-    </section><section>
-    <section>
+</div></section><section>
     
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s assign a value to a variable.</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[30]:
+In&nbsp;[70]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">alphabet</span> <span class="o">=</span> <span class="s">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>
 <span class="k">print</span> <span class="n">alphabet</span>
-<span class="k">print</span> <span class="n">alphabet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">alphabet</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">alphabet</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">alphabet</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
-<span class="k">print</span> <span class="n">alphabet</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">alphabet</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">alphabet</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-<span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)</span>
-<span class="k">print</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">]</span> <span class="c"># AKA List comprehension (note that strings are iterables!)</span>
-<span class="k">print</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">[::</span><span class="mi">2</span><span class="p">]]</span>
 </pre></div>
 
 </div>
@@ -2176,21 +2659,456 @@ In&nbsp;[30]:
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
 abcdefghijklmnopqrstuvwxyz
-a
-abcdefghijklmno
-acegikmo
-z
-abcdefghijklmnopqrstuvwxy
-acegikmoqsuwy
-[&apos;abcdefghijklmnopqrstuvwxyz&apos;]
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;, &apos;k&apos;, &apos;l&apos;, &apos;m&apos;, &apos;n&apos;, &apos;o&apos;, &apos;p&apos;, &apos;q&apos;, &apos;r&apos;, &apos;s&apos;, &apos;t&apos;, &apos;u&apos;, &apos;v&apos;, &apos;w&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;]
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;, &apos;k&apos;, &apos;l&apos;, &apos;m&apos;, &apos;n&apos;, &apos;o&apos;, &apos;p&apos;, &apos;q&apos;, &apos;r&apos;, &apos;s&apos;, &apos;t&apos;, &apos;u&apos;, &apos;v&apos;, &apos;w&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;]
-[&apos;A&apos;, &apos;C&apos;, &apos;E&apos;, &apos;G&apos;, &apos;I&apos;, &apos;K&apos;, &apos;M&apos;, &apos;O&apos;, &apos;Q&apos;, &apos;S&apos;, &apos;U&apos;, &apos;W&apos;, &apos;Y&apos;]
 
 </pre>
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>The string is denoted by the encapsulating &#39;&#39; characters.  Python conventionally uses &#39;&#39;.  You can also use &quot;&quot;.</p>
+<p>Variable assignment occurs through the use of the <code>=</code> operator.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[71]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">numbers</span> <span class="o">=</span> <span class="s">&#39;0123456789</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_pyerr">
+<pre>
+<span class="ansicyan">  File </span><span class="ansigreen">&quot;&lt;ipython-input-71-72568ec75aba&gt;&quot;</span><span class="ansicyan">, line </span><span class="ansigreen">1</span>
+<span class="ansired">    numbers = &apos;0123456789</span>
+                        ^
+<span class="ansired">SyntaxError</span><span class="ansired">:</span> EOL while scanning string literal
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Strings are basically character arrays.  You can refer to a character by its array index using <em>slice notation</em>: <code>[start:end:step]</code></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[53]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">alphabet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">alphabet</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">alphabet</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">alphabet</span><span class="p">[:]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+a
+abcdefghijklmno
+acegikmo
+abcdefghijklmnopqrstuvwxyz
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Python&#39;s slice notation also accepts negative integers:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[56]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">alphabet</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
+<span class="k">print</span> <span class="n">alphabet</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">alphabet</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+z
+abcdefghijklmnopqrstuvwxy
+acegikmoqsuwy
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What if you pass a <code>float</code>?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[61]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">alphabet</span><span class="p">[</span><span class="mf">0.2</span><span class="p">:]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-61-ae6a5b5f59da&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span><span class="ansigreen">print</span> alphabet<span class="ansiblue">[</span><span class="ansicyan">0.2</span><span class="ansiblue">:</span><span class="ansiblue">]</span><span class="ansiblue"></span>
+
+<span class="ansired">TypeError</span>: slice indices must be integers or None or have an __index__ method</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[63]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="s">&#39;What type of object is &quot;alphabet&quot;?&#39;</span>
+<span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+What type of object is &quot;alphabet&quot;?
+&lt;type &apos;str&apos;&gt;
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[64]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="s">&#39;What are the native or built-in functions or attributes (AKA member methods and attributes) for these kinds of objects have?&#39;</span>
+<span class="k">print</span> <span class="nb">dir</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+What are the native or built-in functions or attributes (AKA member methods and attributes) for these kinds of objects have?
+[&apos;__add__&apos;, &apos;__class__&apos;, &apos;__contains__&apos;, &apos;__delattr__&apos;, &apos;__doc__&apos;, &apos;__eq__&apos;, &apos;__format__&apos;, &apos;__ge__&apos;, &apos;__getattribute__&apos;, &apos;__getitem__&apos;, &apos;__getnewargs__&apos;, &apos;__getslice__&apos;, &apos;__gt__&apos;, &apos;__hash__&apos;, &apos;__init__&apos;, &apos;__le__&apos;, &apos;__len__&apos;, &apos;__lt__&apos;, &apos;__mod__&apos;, &apos;__mul__&apos;, &apos;__ne__&apos;, &apos;__new__&apos;, &apos;__reduce__&apos;, &apos;__reduce_ex__&apos;, &apos;__repr__&apos;, &apos;__rmod__&apos;, &apos;__rmul__&apos;, &apos;__setattr__&apos;, &apos;__sizeof__&apos;, &apos;__str__&apos;, &apos;__subclasshook__&apos;, &apos;_formatter_field_name_split&apos;, &apos;_formatter_parser&apos;, &apos;capitalize&apos;, &apos;center&apos;, &apos;count&apos;, &apos;decode&apos;, &apos;encode&apos;, &apos;endswith&apos;, &apos;expandtabs&apos;, &apos;find&apos;, &apos;format&apos;, &apos;index&apos;, &apos;isalnum&apos;, &apos;isalpha&apos;, &apos;isdigit&apos;, &apos;islower&apos;, &apos;isspace&apos;, &apos;istitle&apos;, &apos;isupper&apos;, &apos;join&apos;, &apos;ljust&apos;, &apos;lower&apos;, &apos;lstrip&apos;, &apos;partition&apos;, &apos;replace&apos;, &apos;rfind&apos;, &apos;rindex&apos;, &apos;rjust&apos;, &apos;rpartition&apos;, &apos;rsplit&apos;, &apos;rstrip&apos;, &apos;split&apos;, &apos;splitlines&apos;, &apos;startswith&apos;, &apos;strip&apos;, &apos;swapcase&apos;, &apos;title&apos;, &apos;translate&apos;, &apos;upper&apos;, &apos;zfill&apos;]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">You</span> <span class="n">can</span> <span class="n">use</span> <span class="n">call</span> <span class="n">these</span> <span class="n">functions</span> <span class="n">via</span> <span class="n">dot</span> <span class="n">notation</span><span class="p">,</span> <span class="n">like</span> <span class="n">so</span><span class="p">:</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[41]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">alphabet</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">alphabet</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">alphabet</span><span class="o">.</span><span class="n">__len__</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+[&apos;abcdefghijklmnopqrstuvwxyz&apos;]
+abcdefghijklmnopqrstuvwxyz
+26
+26
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">You</span> <span class="n">can</span> <span class="n">also</span> <span class="n">call</span> <span class="n">some</span> <span class="n">functions</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">all</span><span class="err">!</span><span class="p">)</span> <span class="n">using</span> <span class="n">function</span> <span class="n">notation</span><span class="p">:</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[43]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+26
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>NOTE: Don&#39;t worry about functions that start or end with &quot;__&quot; for now.  <a href="http://rafekettler.com/magicmethods.html">It&#39;s complicated</a>.</p>
+</blockquote>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can change the type of object through <em>conversion</em>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[67]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;, &apos;k&apos;, &apos;l&apos;, &apos;m&apos;, &apos;n&apos;, &apos;o&apos;, &apos;p&apos;, &apos;q&apos;, &apos;r&apos;, &apos;s&apos;, &apos;t&apos;, &apos;u&apos;, &apos;v&apos;, &apos;w&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;]
+26
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>NOTE: These aren&#39;t precisely the exact same object.  Can you explain?</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="o">&gt;</span> <span class="n">NOTE</span><span class="p">:</span> <span class="n">These</span> <span class="n">aren</span><span class="s">&#39;t precisely the exact same object.  Can you explain</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section><section>
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">]</span> <span class="c"># AKA List comprehension (note that strings are iterables!)</span>
+<span class="k">print</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">[::</span><span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 
