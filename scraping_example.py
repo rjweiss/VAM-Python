@@ -40,6 +40,7 @@ for link in valid_links:
    	
 	text_as_list_of_strings = []
 	for p in all_p_tags:
+		# Using p.string instead of p.get_text() for reproducible example.  Try .get_text()
 		if not p.string is None:
 			text_as_list_of_strings.append(p.string)
 	#text_as_list_of_strings = [p.get_text() for p in all_p_tags]
