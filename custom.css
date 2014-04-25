@@ -14,6 +14,10 @@ font-size: 18px;
 }
 div.output_stderr {
 background: #F00;
+font-size: 16px;
+}
+div.output_stdout{
+font-size: 16px;
 }
 .reveal table th, .reveal table td {
 color: #000000;
