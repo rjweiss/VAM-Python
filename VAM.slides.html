@@ -1957,10 +1957,11 @@ In&nbsp;[1]:
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong> We&#39;re going to try and cover a lot of ground by teaching through application: simple demo on how to use Python to extract structured data from web pages </strong></p>
-<pre><code>- Review basic Python and programming concepts
-- Introduce web technology concepts (server-client architecture, response-request model, the DOM)
-- Demonstrate useful tools and modules to use Python *for analysis purposes*.
-</code></pre>
+<ul>
+<li>Review basic Python and programming concepts</li>
+<li>Introduce web technology concepts (server-client architecture, response-request model, the DOM)</li>
+<li>Demonstrate useful tools and modules to use Python <em>for analysis purposes</em>.</li>
+</ul>
 </div>
 </div>
 </div></section><section>
@@ -3277,24 +3278,45 @@ hello world!
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<pre><code>rweiss$ virtualenv env
+<pre><code>rweiss$ pwd
+/Users/rweiss/Documents/VAM-Python
+
+rweiss$ virtualenv env
 New python executable in env/bin/python
 Installing setuptools, pip...done.     
+
+rweiss$ ls env/
+.Python  bin/     include/ lib/     
+
 rweiss$ ls env/bin/
 activate          activate.fish     easy_install      pip               pip2.7            python2           
 activate.csh      activate_this.py  easy_install-2.7  pip2              python            python2.7         
-rweiss$ ls env/
-.Python  bin/     include/ lib/     
+
 rweiss$ ls env/lib/python2.7/site-packages/
 _markerlib            easy_install.pyc        pip-1.5.4.dist-info        pkg_resources.pyc        setuptools-2.2.dist-info
 easy_install.py            pip                pkg_resources.py        setuptools
-rweiss$ source env/bin/activate
+</code></pre>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<pre><code>rweiss$ source env/bin/activate
+
+rweiss$ which python
+/Users/rweiss/Documents/VAM-Python/env/bin/python
+
 (env)rweiss$ env/bin/pip install requests
 Downloading/unpacking requests
   Downloading requests-2.2.1-py2.py3-none-any.whl (625kB): 625kB downloaded
 Installing collected packages: requests
 Successfully installed requests
 Cleaning up...
+
 (env)rweiss$ ls env/lib/python2.7/site-packages/
 _markerlib            pip                pkg_resources.pyc        setuptools
 easy_install.py            pip-1.5.4.dist-info        requests            setuptools-2.2.dist-info
@@ -3311,7 +3333,8 @@ easy_install.pyc        pkg_resources.py        requests-2.2.1.dist-info
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="remember-deactivate-">Remember <code>deactivate?</code></h3>
 <pre><code>(env)rweiss$ deactivate
-rweiss$
+rweiss$ which python
+/usr/bin/python
 </code></pre><p><strong>EPD is not just a distribution of Python.  It also creates an isolated Python environment.</strong></p>
 </div>
 </div>
@@ -3341,7 +3364,7 @@ rweiss$
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[75]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3360,7 +3383,7 @@ In&nbsp;[4]:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_text output_pyerr">
 <pre>
-<span class="ansicyan">  File </span><span class="ansigreen">&quot;&lt;ipython-input-4-83d360549157&gt;&quot;</span><span class="ansicyan">, line </span><span class="ansigreen">2</span>
+<span class="ansicyan">  File </span><span class="ansigreen">&quot;&lt;ipython-input-75-83d360549157&gt;&quot;</span><span class="ansicyan">, line </span><span class="ansigreen">2</span>
 <span class="ansired">    print i</span>
         ^
 <span class="ansired">IndentationError</span><span class="ansired">:</span> expected an indented block
@@ -3375,7 +3398,7 @@ In&nbsp;[4]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[5]:
+In&nbsp;[76]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3421,7 +3444,7 @@ In&nbsp;[5]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[6]:
+In&nbsp;[77]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3440,7 +3463,7 @@ In&nbsp;[6]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[6]:</div>
+    Out[77]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
@@ -3489,7 +3512,7 @@ In&nbsp;[6]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[7]:
+In&nbsp;[78]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3506,7 +3529,7 @@ In&nbsp;[7]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[7]:</div>
+    Out[78]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
@@ -4690,8 +4713,8 @@ In&nbsp;[28]:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-Set values are: 	set([141, 865, 685, 783])
-List values are: 	[865, 685, 783, 141]
+Set values are: 	set([984, 881, 58, 869])
+List values are: 	[881, 58, 869, 984]
 
 </pre>
 </div>
@@ -4735,8 +4758,8 @@ In&nbsp;[29]:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-Set values are: 	set([615, 265, 236, 275, 213, 473, 383, 157, 350, 607])
-List values are: 	[615, 275, 213, 350, 607, 473, 383, 265, 236, 157]
+Set values are: 	set([322, 935, 747, 141, 527, 177, 505, 250, 476, 863])
+List values are: 	[747, 935, 177, 250, 322, 476, 505, 141, 863, 527]
 10 iterations: 10 elements in the set
 10 iterations: 10 elements in the list
 
@@ -4779,7 +4802,7 @@ In&nbsp;[30]:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-100 iterations: 94 elements in the set
+100 iterations: 93 elements in the set
 100 iterations: 100 elements in the list
 
 </pre>
@@ -5264,7 +5287,7 @@ In&nbsp;[40]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[41]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5275,25 +5298,6 @@ In&nbsp;[41]:
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-&lt;type &apos;int&apos;&gt;
-Server response status code = 200
-Server response status code = 200
-Server response status code = 200
-
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -5331,7 +5335,7 @@ Server response status code = 200
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[42]:
+In&nbsp;[41]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5357,7 +5361,7 @@ ISO-8859-1
  (&apos;content-encoding&apos;, &apos;gzip&apos;),
  (&apos;vary&apos;, &apos;Accept-Encoding&apos;),
  (&apos;server&apos;, &apos;Apache&apos;),
- (&apos;date&apos;, &apos;Fri, 25 Apr 2014 06:22:26 GMT&apos;),
+ (&apos;date&apos;, &apos;Fri, 25 Apr 2014 06:59:59 GMT&apos;),
  (&apos;content-type&apos;, &apos;text/html&apos;)]
 
 </pre>
@@ -5367,7 +5371,8 @@ ISO-8859-1
 </div>
 </div>
 
-</div>
+</div></section><section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -5380,7 +5385,7 @@ ISO-8859-1
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[43]:
+In&nbsp;[42]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5397,7 +5402,7 @@ In&nbsp;[43]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[43]:</div>
+    Out[42]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
@@ -5435,7 +5440,7 @@ u&apos;{\n  &quot;user-agent&quot;: &quot;python-requests/2.2.1 CPython/2.7.6 Da
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[44]:
+In&nbsp;[43]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5488,14 +5493,12 @@ url
 </div>
 </div>
 
-</div></section>
-    </section><section>
-    <section>
+</div></section><section>
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[45]:
+In&nbsp;[44]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5526,7 +5529,8 @@ In&nbsp;[45]:
 </div>
 </div>
 
-</div>
+</div></section><section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -5540,7 +5544,7 @@ In&nbsp;[45]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[46]:
+In&nbsp;[45]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5572,7 +5576,7 @@ In&nbsp;[46]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[47]:
+In&nbsp;[46]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5600,7 +5604,10 @@ In&nbsp;[47]:
 </div>
 </div>
 
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -5610,7 +5617,8 @@ In&nbsp;[47]:
 <p>This is probably more appropriately called <em>screen</em> scraping.  I&#39;ll get more into that at the end.</p>
 </div>
 </div>
-</div>
+</div></section><section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -5631,14 +5639,12 @@ In&nbsp;[47]:
 <p>Both of these can be easily installed if you use the Enthought Python Distribution.  We&#39;re going to do an example with BeautifulSoup.</p>
 </div>
 </div>
-</div></section>
-    </section><section>
-    <section>
+</div></section><section>
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[48]:
+In&nbsp;[47]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5668,11 +5674,12 @@ In&nbsp;[48]:
 </div>
 </div>
 
-</div>
+</div></section><section>
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[49]:
+In&nbsp;[48]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5726,7 +5733,7 @@ html&gt;
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[50]:
+In&nbsp;[49]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5759,13 +5766,14 @@ In&nbsp;[50]:
 </div>
 </div>
 
-</div>
+</div></section><section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="what-are-these-functions-you-re-calling-">What are these functions you&#39;re calling?</h2>
+<h2 id="what-are-these-functions-">What are these functions?</h2>
 <p>Beautiful Soup has written some functions that are helpful for working with <em>HTML</em>.  They are essentially wrappers to retrieve very common <strong>HTML elements</strong>.</p>
 </div>
 </div>
@@ -5773,7 +5781,7 @@ In&nbsp;[50]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[51]:
+In&nbsp;[50]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -5789,7 +5797,7 @@ In&nbsp;[51]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[51]:</div>
+    Out[50]:</div>
 
 
 <div class="output_png output_subarea output_pyout">
@@ -6706,7 +6714,7 @@ RAvhlxdqAAAAAElFTkSuQmCC
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[52]:
+In&nbsp;[51]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6722,7 +6730,7 @@ In&nbsp;[52]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[52]:</div>
+    Out[51]:</div>
 
 
 <div class="output_png output_subarea output_pyout">
@@ -6985,7 +6993,7 @@ LEJchwAEIAABCEDgKAL/D1dY1f/4wNjGAAAAAElFTkSuQmCC
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[53]:
+In&nbsp;[52]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7023,7 +7031,7 @@ word
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[54]:
+In&nbsp;[53]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7083,7 +7091,7 @@ html&gt;
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[55]:
+In&nbsp;[54]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7123,7 +7131,7 @@ All link hrefs in a list from a list comprehension: 142
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[56]:
+In&nbsp;[55]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7158,7 +7166,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[57]:
+In&nbsp;[56]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7174,7 +7182,7 @@ In&nbsp;[57]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[57]:</div>
+    Out[56]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
@@ -7212,7 +7220,7 @@ In&nbsp;[57]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[58]:
+In&nbsp;[57]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7264,7 +7272,7 @@ In&nbsp;[58]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[59]:
+In&nbsp;[58]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7316,7 +7324,7 @@ href #59 = index.php?pid=29597
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[60]:
+In&nbsp;[59]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7348,7 +7356,7 @@ There are 96 valid links.
 </div>
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[60]:</div>
+    Out[59]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
@@ -7376,7 +7384,7 @@ There are 96 valid links.
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[61]:
+In&nbsp;[60]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7397,16 +7405,16 @@ In&nbsp;[61]:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-2014-04-24T23:22:40.031775	http://www.presidency.ucsb.edu/ws/index.php?pid=101962	200
-2014-04-24T23:22:40.229798	http://www.presidency.ucsb.edu/ws/index.php?pid=78283	200
-2014-04-24T23:22:40.382085	http://www.presidency.ucsb.edu/ws/index.php?pid=29613	200
-2014-04-24T23:22:40.553394	http://www.presidency.ucsb.edu/ws/index.php?pid=29612	200
-2014-04-24T23:22:40.714873	http://www.presidency.ucsb.edu/ws/index.php?pid=29611	200
-2014-04-24T23:22:40.821450	http://www.presidency.ucsb.edu/ws/index.php?pid=29610	200
-2014-04-24T23:22:40.924446	http://www.presidency.ucsb.edu/ws/index.php?pid=29609	200
-2014-04-24T23:22:41.156789	http://www.presidency.ucsb.edu/ws/index.php?pid=29608	200
-2014-04-24T23:22:41.358949	http://www.presidency.ucsb.edu/ws/index.php?pid=29607	200
-2014-04-24T23:22:41.529096	http://www.presidency.ucsb.edu/ws/index.php?pid=29606	200
+2014-04-25T00:00:13.615370	http://www.presidency.ucsb.edu/ws/index.php?pid=101962	200
+2014-04-25T00:00:13.825012	http://www.presidency.ucsb.edu/ws/index.php?pid=78283	200
+2014-04-25T00:00:13.989658	http://www.presidency.ucsb.edu/ws/index.php?pid=29613	200
+2014-04-25T00:00:14.167604	http://www.presidency.ucsb.edu/ws/index.php?pid=29612	200
+2014-04-25T00:00:14.365882	http://www.presidency.ucsb.edu/ws/index.php?pid=29611	200
+2014-04-25T00:00:14.462265	http://www.presidency.ucsb.edu/ws/index.php?pid=29610	200
+2014-04-25T00:00:14.557201	http://www.presidency.ucsb.edu/ws/index.php?pid=29609	200
+2014-04-25T00:00:14.769710	http://www.presidency.ucsb.edu/ws/index.php?pid=29608	200
+2014-04-25T00:00:15.013452	http://www.presidency.ucsb.edu/ws/index.php?pid=29607	200
+2014-04-25T00:00:15.186815	http://www.presidency.ucsb.edu/ws/index.php?pid=29606	200
 
 </pre>
 </div>
@@ -7422,7 +7430,7 @@ In&nbsp;[61]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>However, this will print to <code>stdout</code> (that&#39;s what <code>print()</code> does). </p>
+<p>However, that previous example will print to <code>stdout</code> (that&#39;s what <code>print()</code> does). </p>
 <p>If you execute this as a script at the command line, it would be better to have this write to a file, so let&#39;s open up a text file and write the output to that:</p>
 </div>
 </div>
@@ -7430,7 +7438,7 @@ In&nbsp;[61]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[62]:
+In&nbsp;[61]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7458,7 +7466,7 @@ In&nbsp;[62]:
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
 &lt;type &apos;file&apos;&gt;
-[&apos;.git&apos;, &apos;.ipynb_checkpoints&apos;, &apos;custom.css&apos;, &apos;env&apos;, &apos;index.html&apos;, &apos;LICENSE&apos;, &apos;output&apos;, &apos;presidency_platforms_scraping.log&apos;, &apos;README.md&apos;, &apos;requirements.txt&apos;, &apos;reveal.js&apos;, &apos;test.py&apos;, &apos;VAM.html&apos;, &apos;VAM.ipynb&apos;, &apos;VAM.slides.html&apos;, &apos;VAM_files&apos;]
+[&apos;.git&apos;, &apos;.gitignore&apos;, &apos;.ipynb_checkpoints&apos;, &apos;.VAM.slides.html.swp&apos;, &apos;custom.css&apos;, &apos;index.html&apos;, &apos;LICENSE&apos;, &apos;presidency_platforms_scraping.log&apos;, &apos;README.md&apos;, &apos;requirements.txt&apos;, &apos;reveal.js&apos;, &apos;test.py&apos;, &apos;VAM.html&apos;, &apos;VAM.ipynb&apos;, &apos;VAM.slides.html&apos;, &apos;VAM_files&apos;]
 
 </pre>
 </div>
@@ -7481,7 +7489,7 @@ In&nbsp;[62]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[63]:
+In&nbsp;[62]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7502,15 +7510,15 @@ head presidency_platforms_scraping.log
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Timestamp	URL	Status Code
-2014-04-24T23:22:41.731150	http://www.presidency.ucsb.edu/ws/index.php?pid=101962	200
-2014-04-24T23:22:41.925549	http://www.presidency.ucsb.edu/ws/index.php?pid=78283	200
-2014-04-24T23:22:42.087929	http://www.presidency.ucsb.edu/ws/index.php?pid=29613	200
-2014-04-24T23:22:42.260297	http://www.presidency.ucsb.edu/ws/index.php?pid=29612	200
-2014-04-24T23:22:42.409683	http://www.presidency.ucsb.edu/ws/index.php?pid=29611	200
-2014-04-24T23:22:42.515469	http://www.presidency.ucsb.edu/ws/index.php?pid=29610	200
-2014-04-24T23:22:42.615566	http://www.presidency.ucsb.edu/ws/index.php?pid=29609	200
-2014-04-24T23:22:42.811705	http://www.presidency.ucsb.edu/ws/index.php?pid=29608	200
-2014-04-24T23:22:43.035359	http://www.presidency.ucsb.edu/ws/index.php?pid=29607	200
+2014-04-25T00:00:15.368928	http://www.presidency.ucsb.edu/ws/index.php?pid=101962	200
+2014-04-25T00:00:15.573855	http://www.presidency.ucsb.edu/ws/index.php?pid=78283	200
+2014-04-25T00:00:15.736015	http://www.presidency.ucsb.edu/ws/index.php?pid=29613	200
+2014-04-25T00:00:15.908805	http://www.presidency.ucsb.edu/ws/index.php?pid=29612	200
+2014-04-25T00:00:16.080421	http://www.presidency.ucsb.edu/ws/index.php?pid=29611	200
+2014-04-25T00:00:16.207836	http://www.presidency.ucsb.edu/ws/index.php?pid=29610	200
+2014-04-25T00:00:16.311444	http://www.presidency.ucsb.edu/ws/index.php?pid=29609	200
+2014-04-25T00:00:16.556681	http://www.presidency.ucsb.edu/ws/index.php?pid=29608	200
+2014-04-25T00:00:16.796014	http://www.presidency.ucsb.edu/ws/index.php?pid=29607	200
 
 </pre>
 </div>
@@ -7536,7 +7544,7 @@ Timestamp	URL	Status Code
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[64]:
+In&nbsp;[63]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7574,7 +7582,7 @@ Four years ago, Democrats, independents, and many Republicans came together as A
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[65]:
+In&nbsp;[64]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7602,7 +7610,8 @@ In&nbsp;[65]:
 </div>
 </div>
 
-</div>
+</div></section><section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -7615,7 +7624,7 @@ In&nbsp;[65]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[66]:
+In&nbsp;[65]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7631,7 +7640,7 @@ In&nbsp;[66]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[66]:</div>
+    Out[65]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
@@ -7761,7 +7770,7 @@ In&nbsp;[66]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[67]:
+In&nbsp;[66]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7825,7 +7834,7 @@ Finished scraping.
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[68]:
+In&nbsp;[67]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7857,7 +7866,7 @@ In&nbsp;[68]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[83]:
+In&nbsp;[68]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7921,7 +7930,7 @@ Four years ago, Democrats, independents, and many Republicans came together as A
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[70]:
+In&nbsp;[69]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -7939,7 +7948,7 @@ In&nbsp;[70]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[70]:</div>
+    Out[69]:</div>
 
 
 <div class="output_png output_subarea output_pyout">
@@ -9546,7 +9555,10 @@ nc8D4fcKLe1/nWiK/wFoiLTgA8ypXAAAAABJRU5ErkJggg==
 </div>
 </div>
 
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -9560,7 +9572,7 @@ nc8D4fcKLe1/nWiK/wFoiLTgA8ypXAAAAABJRU5ErkJggg==
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[71]:
+In&nbsp;[70]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -9730,7 +9742,7 @@ zope.interface==4.1.1
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[72]:
+In&nbsp;[71]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -9755,7 +9767,7 @@ pip freeze &gt; requirements.txt
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[73]:
+In&nbsp;[72]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -9806,7 +9818,7 @@ Namespaces are one honking great idea -- let&apos;s do more of those!
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[74]:
+In&nbsp;[73]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -9824,7 +9836,7 @@ In&nbsp;[74]:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_text output_pyerr">
 <pre>
-<span class="ansicyan">  File </span><span class="ansigreen">&quot;&lt;ipython-input-74-2aebb3fc8ecf&gt;&quot;</span><span class="ansicyan">, line </span><span class="ansigreen">1</span>
+<span class="ansicyan">  File </span><span class="ansigreen">&quot;&lt;ipython-input-73-2aebb3fc8ecf&gt;&quot;</span><span class="ansicyan">, line </span><span class="ansigreen">1</span>
 <span class="ansired">    from __future__ import braces</span>
 <span class="ansired">SyntaxError</span><span class="ansired">:</span> not a chance
 </pre>
