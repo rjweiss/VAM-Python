@@ -6,11 +6,13 @@ Materials for the Very Applied Methods workshop (April 25, 2014)
 
 ## Starting the slide show
 
-If you just want to see the slides as a slideshow in your browser, click [here](http://www.rebeccaweiss.info/VAM-Python/VAM.slides.html)
+If you just want to see the slides as a slideshow in your browser, [follow this link](http://www.rebeccaweiss.info/VAM-Python/VAM.slides.html)
 
-You can also view them as a single html file [here](http://www.rebeccaweiss.info/VAM-Python/VAM.html)
+You can also view them as a single HTML file, [follow this link](http://www.rebeccaweiss.info/VAM-Python/VAM.html)
 
-If you want to download the slides as an IPython notebook, clone the master branch of this repository:
+If you want to download the slides as an IPython notebook, download one of the archives on the left (e.g. zip or tarball).
+
+If you have `git` installed, clone the master branch of this repository:
 
 ```bash
 git clone git@github.com:rjweiss/VAM-Python.git
